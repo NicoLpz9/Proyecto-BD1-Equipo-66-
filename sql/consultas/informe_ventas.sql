@@ -1,0 +1,1 @@
+-- Consulta: informe de ventas

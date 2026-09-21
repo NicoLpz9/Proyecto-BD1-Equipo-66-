@@ -1,0 +1,1 @@
+-- Consulta: comprobante de venta
