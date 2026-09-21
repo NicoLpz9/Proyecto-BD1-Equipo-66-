@@ -24,10 +24,10 @@ proyecto-bd1-equipo-66/
 
 ## Integrantes
 
-- Nombre 1
-- Nombre 2
-- Nombre 3
+- Correa José Ignacio
+- López Jonatan Nicolás
+- López Santiago
+- Mierez Fabricio Leonel
 
 ## Descripción del proyecto
-
-_Completar con una breve descripción del caso de negocio elegido._
+Nuestro proyecto consiste en el diseño e implementación de una base de datos enfocada en la administración de ventas y control de inventario de un MiniMarket
