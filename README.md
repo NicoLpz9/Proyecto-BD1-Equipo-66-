@@ -16,7 +16,7 @@ proyecto-bd1-equipo-66/
 ├── sql/
 │   ├── ddl/         Estructura de la base de datos
 │   ├── dml/         Inserción, actualización y eliminación de datos
-│   ├── consultas/   Consultas SELECT (JOIN, GROUP BY, HAVING, subconsultas)
+│   ├── consultas/   Recuperación y análisis de información
 │   └── tecnico/     Mecanismos avanzados del SGBD
 │
 └── README.md
