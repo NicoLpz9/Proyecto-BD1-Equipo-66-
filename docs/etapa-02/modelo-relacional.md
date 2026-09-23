@@ -1,2 +1,2 @@
 # Modelo relacional
-subi el archivo
+subi el archivo pofa
