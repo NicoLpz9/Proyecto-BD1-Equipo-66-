@@ -4,7 +4,6 @@ VALUES (999,'lionel messi');
 INSERT INTO METODODEPAGO (id_metodo, tipo_de_pago) 
 VALUES (1, 'Transferencia'), (2, 'Efectivo');
 
--- Nota: Recordá respetar el orden de las columnas según tu CREATE TABLE
 INSERT INTO CLIENTE (dni, nombre_y_apellido, cod_cliente) 
 VALUES (42345678, 'Sofia Martinez', 100);
 
