@@ -47,3 +47,58 @@ CREATE TABLE CATEGORIA (
   CONSTRAINT PK_CATEGORIA        PRIMARY KEY (id_categoria),
   CONSTRAINT UQ_CATEGORIA_NOMBRE UNIQUE (nombre_categoria)
 );
+
+-- Tablas con dependencias de nivel 1 
+CREATE TABLE PRODUCTO (
+    cod_producto INT IDENTITY(1,1) NOT NULL,
+    nombre       VARCHAR(100)      NOT NULL,
+    descripcion  VARCHAR(255)      NULL,
+    id_empleado  INT               NOT NULL,
+    id_categoria INT               NOT NULL,
+    CONSTRAINT PK_PRODUCTO          PRIMARY KEY (cod_producto),
+    CONSTRAINT FK_PRODUCTO_EMPLEADO FOREIGN KEY (id_empleado) REFERENCES EMPLEADO(id_empleado),
+    CONSTRAINT FK_PRODUCTO_CATEGORIA FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id_categoria)
+);
+
+CREATE TABLE PROVEEDOR (
+    cod_proveedor INT IDENTITY(1,1) NOT NULL,
+    CUIT          CHAR(11)          NOT NULL,
+    razon_social  VARCHAR(100)      NOT NULL,
+    cod_producto  INT               NOT NULL,
+    CONSTRAINT PK_PROVEEDOR        PRIMARY KEY (cod_proveedor),
+    CONSTRAINT UQ_PROVEEDOR_CUIT   UNIQUE (CUIT),
+    CONSTRAINT CK_PROVEEDOR_CUIT   CHECK (CUIT NOT LIKE '%[^0-9]%'),
+    CONSTRAINT FK_PROVEEDOR_PRODUCTO FOREIGN KEY (cod_producto) REFERENCES PRODUCTO(cod_producto)
+);
+
+CREATE TABLE COMPRA ( 
+    id_compra     INT IDENTITY(1,1) NOT NULL,
+    costo         DECIMAL(10, 2)    NOT NULL,
+    fecha_y_hora  DATETIME          NOT NULL,
+    cod_cliente   INT               NOT NULL,
+    CONSTRAINT PK_COMPRA         PRIMARY KEY (id_compra),
+    CONSTRAINT FK_COMPRA_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTE(cod_cliente)
+);
+
+
+-- Tablas con dependencias de nivel 2
+CREATE TABLE METODO_DE_PAGO (
+    id_metodo    INT IDENTITY(1,1) NOT NULL,
+    tipo_de_pago VARCHAR(50)       NOT NULL,
+    id_compra    INT               NOT NULL,
+    CONSTRAINT PK_METODO_DE_PAGO       PRIMARY KEY (id_metodo),
+    CONSTRAINT UQ_METODO_DE_PAGO_TIPO  UNIQUE (tipo_de_pago),
+    CONSTRAINT FK_METODO_DE_PAGO_COMPRA FOREIGN KEY (id_compra) REFERENCES COMPRA(id_compra)
+);
+
+CREATE TABLE DETALLEDECOMPRA (
+    cod_detalle    INT IDENTITY(1,1) NOT NULL,
+    id_compra      INT               NOT NULL,
+    precio_unitario DECIMAL(10, 2)   NOT NULL,
+    sub_total      DECIMAL(10, 2)    NOT NULL,
+    cantidad       INT               NOT NULL,
+    cod_producto   INT               NOT NULL,
+    CONSTRAINT PK_DETALLEDECOMPRA     PRIMARY KEY (cod_detalle),
+    CONSTRAINT FK_DETALLE_COMPRA      FOREIGN KEY (id_compra) REFERENCES COMPRA(id_compra),
+    CONSTRAINT FK_DETALLE_PRODUCTO    FOREIGN KEY (cod_producto) REFERENCES PRODUCTO(cod_producto)
+);
