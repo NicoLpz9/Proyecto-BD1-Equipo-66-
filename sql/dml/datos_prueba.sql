@@ -14,7 +14,7 @@ INSERT INTO CATEGORIA (id_categoria, nombre_categoria)
 VALUES (1, 'Remeras Oversize'), (2, 'Pantalones Baggy');
 
 
--- 2. Tablas intermedias (Dependen de que las de arriba ya existan)
+-- Tablas intermedias (Dependen de que las de arriba ya existan)
 INSERT INTO PRODUCTO (Cod_Producto, nombre, descripcion, id_empleado, id_categoria, cod_Proveedor) 
 VALUES (1001, 'Remera Lisa Negra', 'Algodón peinado premium, corte oversize',999, 1, 10);
 
@@ -22,7 +22,16 @@ INSERT INTO COMPRA (id_compra, costo, fecha_y_hora, cod_cliente, id_metodo)
 VALUES (5000, 25000, '2026-09-30 18:30:00', 100, 1);
 
 
--- 3. Tablas finales (Dependen de Compra y Producto)
+-- Tablas finales (Dependen de Compra y Producto)
 INSERT INTO DETALLEDECOMPRA (precio_unitario, cod_detalle, sub_total, cantidad, id_compra, Cod_Producto) 
 VALUES (25000, 1, 25000, 1, 5000, 1001);
+--para probar los datos agregados
+SELECT * FROM EMPLEADO;
+SELECT * FROM METODODEPAGO;
+SELECT * FROM CLIENTE;
+SELECT * FROM PROVEEDORES;
+SELECT * FROM CATEGORIA;
+SELECT * FROM PRODUCTO;
+SELECT * FROM COMPRA;
+SELECT * FROM DETALLEDECOMPRA;
 
