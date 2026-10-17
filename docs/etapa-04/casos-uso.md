@@ -10,3 +10,7 @@ Permite analizar las ventas realizadas durante un período determinado, agrupán
 ## 3. Consulta avanzada de productos más vendidos
 
 Permite identificar los productos de los que se vendieron más de una unidad durante un período determinado. Muestra el nombre del producto, su categoría, las unidades vendidas y el importe total vendido.
+
+## Objetivo
+
+Estas consultas permiten obtener información útil para controlar las ventas, consultar operaciones realizadas y conocer qué productos tienen mayor movimiento.
