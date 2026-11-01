@@ -23,19 +23,20 @@ PK: id_metodo
 
 ### COMPRA
 
-COMPRA(id_compra, costo, fecha_hora, cod_cliente, id_metodo)
+COMPRA(id_compra, costo, fecha_hora, cod_cliente, id_metodo, id_empleado)
 
 PK: id_compra
 FK: cod_cliente
 FK: id_metodo
+FK: id_empleado
 
 
 ### PRODUCTO
 
-PRODUCTO(cod_producto, nombre, descripcion)
+PRODUCTO(cod_producto, nombre, descripcion, id_categoria)
 
 PK: cod_producto
-
+FK: id_categoria
 
 ### DETALLE_DE_COMPRA
 
@@ -76,12 +77,3 @@ SUMINISTRA(cod_producto, cod_proveedor)
 PK: (cod_producto, cod_proveedor)
 FK: cod_producto
 FK: cod_proveedor
-
-
-### CLASIFICA
-
-CLASIFICA(cod_producto, id_categoria)
-
-PK: (cod_producto, id_categoria)
-FK: cod_producto
-FK: id_categoria
