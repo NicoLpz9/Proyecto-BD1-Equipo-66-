@@ -1,37 +1,46 @@
-INSERT INTO EMPLEADO(id_empleado , nombre_y_apellido)
-VALUES (999,'lionel messi');
+USE MiniMarket;
 
-INSERT INTO METODODEPAGO (id_metodo, tipo_de_pago) 
-VALUES (1, 'Transferencia'), (2, 'Efectivo');
+-- 1. Tablas independientes
+INSERT INTO EMPLEADO (nombre_y_apellido) 
+VALUES ('Lionel Messi'); 
 
-INSERT INTO CLIENTE (dni, nombre_y_apellido, cod_cliente) 
-VALUES (42345678, 'Sofia Martinez', 100);
+INSERT INTO CATEGORIA (nombre_categoria) 
+VALUES ('Remeras Oversize'), ('Pantalones Baggy'); 
 
-INSERT INTO PROVEEDORES (CUIT, razon_social, cod_Proveedor) 
-VALUES ('30-12345678-9', 'Textil Mayorista SA', 10);
-
-INSERT INTO CATEGORIA (id_categoria, nombre_categoria) 
-VALUES (1, 'Remeras Oversize'), (2, 'Pantalones Baggy');
+INSERT INTO CLIENTE (dni, nombre_y_apellido) 
+VALUES ('42345678', 'Sofia Martinez'); 
 
 
--- Tablas intermedias (Dependen de que las de arriba ya existan)
-INSERT INTO PRODUCTO (Cod_Producto, nombre, descripcion, id_empleado, id_categoria, cod_Proveedor) 
-VALUES (1001, 'Remera Lisa Negra', 'Algodón peinado premium, corte oversize',999, 1, 10);
+-- Tablas con dependencias 
+-- Producto depende de Empleado (ID 1) y Categoria (ID 1)
+INSERT INTO PRODUCTO (nombre, descripcion, id_empleado, id_categoria) 
+VALUES ('Remera Lisa Negra', 'Algodón peinado premium, corte oversize', 1, 1);
 
-INSERT INTO COMPRA (id_compra, costo, fecha_y_hora, cod_cliente, id_metodo) 
-VALUES (5000, 25000, '2026-09-30 18:30:00', 100, 1);
+-- Proveedor depende de Producto (ID 1)
+INSERT INTO PROVEEDOR (CUIT, razon_social, cod_producto) 
+VALUES ('30123456789', 'Textil Mayorista SA', 1);
+
+-- Compra depende de Cliente (ID 1)
+INSERT INTO COMPRA (costo, fecha_y_hora, cod_cliente) 
+VALUES (25000, '2026-09-30 18:30:00', 1);
 
 
--- Tablas finales (Dependen de Compra y Producto)
-INSERT INTO DETALLEDECOMPRA (precio_unitario, cod_detalle, sub_total, cantidad, id_compra, Cod_Producto) 
-VALUES (25000, 1, 25000, 1, 5000, 1001);
---para probar los datos agregados
-SELECT * FROM EMPLEADO;
-SELECT * FROM METODODEPAGO;
-SELECT * FROM CLIENTE;
-SELECT * FROM PROVEEDORES;
-SELECT * FROM CATEGORIA;
-SELECT * FROM PRODUCTO;
-SELECT * FROM COMPRA;
-SELECT * FROM DETALLEDECOMPRA;
 
+-- Metodo de Pago depende de Compra (ID 1)
+INSERT INTO METODO_DE_PAGO (tipo_de_pago, id_compra) 
+VALUES ('Transferencia', 1), ('Efectivo', 1);
+
+-- Detalle de Compra depende de Compra (ID 1) y Producto (ID 1)
+INSERT INTO DETALLEDECOMPRA (id_compra, precio_unitario, sub_total, cantidad, cod_producto) 
+VALUES (1, 25000, 25000, 1, 1);
+
+
+-- Mostrar todas las tablas para verificar los datos
+SELECT 'CLIENTES' AS Tabla, * FROM CLIENTE;
+SELECT 'EMPLEADOS' AS Tabla, * FROM EMPLEADO;
+SELECT 'CATEGORIAS' AS Tabla, * FROM CATEGORIA;
+SELECT 'PRODUCTOS' AS Tabla, * FROM PRODUCTO;
+SELECT 'PROVEEDORES' AS Tabla, * FROM PROVEEDOR;
+SELECT 'COMPRAS' AS Tabla, * FROM COMPRA;
+SELECT 'DETALLES DE COMPRA' AS Tabla, * FROM DETALLEDECOMPRA;
+SELECT 'METODOS DE PAGO' AS Tabla, * FROM METODO_DE_PAGO;
