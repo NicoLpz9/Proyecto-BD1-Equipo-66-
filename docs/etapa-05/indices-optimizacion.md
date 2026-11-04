@@ -20,7 +20,7 @@ Imaginemos el momento del cierre de turno, donde el sistema de punto de venta ne
 
 Para optimizar esto, vamos a crear un índice no agrupado (Non-Clustered Index) sobre la fecha de la venta,ambien vamos a corregir una consulta mal diseñada: en lugar de pedir SELECT * y usar funciones como MONTH(fecha), vamos a especificar exactamente las columnas (usando alias como v y dv) y filtrar con un rango de fechas limpio para que el motor pueda aprovechar el índice de forma directa.
 # Script de demostración y resultados obtenidos.
-Para ver el codigo optimizado ve a "tecnico" y a "optimizacion_de_consulta.sql"
+Para ver el codigo optimizado ve a "tecnico-->indices-->optimizacion_de_consulta.sql"
 
 
 
