@@ -15,7 +15,7 @@ GO
 
 --- Trigger de Auditoria ante actualizacion
 CREATE TRIGGER tr_Auditoria_Detalle_Update
-ON DETALLE_DE_COMPRA
+ON DETALLEDECOMPRA
 AFTER UPDATE
 AS
 BEGIN
