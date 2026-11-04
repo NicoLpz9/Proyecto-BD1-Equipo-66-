@@ -11,7 +11,7 @@ IF NOT EXISTS (SELECT 1 FROM CATEGORIA WHERE nombre_categoria = 'Bebidas')
 IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE nombre = 'Coca-Cola 1.5L')
     INSERT INTO PRODUCTO (nombre, descripcion, id_empleado, id_categoria)
     VALUES ('Coca-Cola 1.5L', 'Gaseosa descartable',
-            (SELECT TOP 1 id_empleado FROM EMPLEADO WHERE nombre_y_apellido = 'Empleado Demo'),
+            (SELECT TOP 1 id_empleado FROM EMPLEADO WHERE nombre_y_apellido = 'Oscar Diaz'),
             (SELECT id_categoria FROM CATEGORIA WHERE nombre_categoria = 'Bebidas'));
 
 
