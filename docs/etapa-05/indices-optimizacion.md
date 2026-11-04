@@ -19,3 +19,6 @@ La optimización de consultas es el proceso de analizar y reestructurar el códi
 Imaginemos el momento del cierre de turno, donde el sistema de punto de venta necesita cruzar miles de registros diarios para cuadrar la caja y actualizar el inventario. Si corremos una consulta que busca todas las ventas del día cruzando la tabla Ventas con Detalle_Ventas y Productos, el sistema podría volverse lentísimo si hace un escaneo secuencial.
 
 Para optimizar esto, vamos a crear un índice no agrupado (Non-Clustered Index) sobre la fecha de la venta,ambien vamos a corregir una consulta mal diseñada: en lugar de pedir SELECT * y usar funciones como MONTH(fecha), vamos a especificar exactamente las columnas (usando alias como v y dv) y filtrar con un rango de fechas limpio para que el motor pueda aprovechar el índice de forma directa.
+
+
+
